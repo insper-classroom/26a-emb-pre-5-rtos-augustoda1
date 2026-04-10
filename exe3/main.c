@@ -65,7 +65,7 @@ void led_2_task(void *p) {
 
     int delay = 0;
     while (true) {
-        if (xQueueReceive(xQueueButId, &delay, 0)) {
+        if (xQueueReceive(xQueueButId2, &delay, 0)) {
             printf("%d\n", delay);
         }
 
@@ -97,7 +97,7 @@ void btn_2_task(void *p) {
                 delay = 100;
             }
             printf("delay btn %d \n", delay);
-            xQueueSend(xQueueButId, &delay, 0);
+            xQueueSend(xQueueButId2, &delay, 0);
         }
     }
 }

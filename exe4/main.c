@@ -14,12 +14,21 @@ const int LED_PIN_G = 6;
 
 QueueHandle_t xQueueButId;
 SemaphoreHandle_t xSemaphore_r;
+QueueHandle_t xQueueButId2;
+SemaphoreHandle_t xSemaphore_g;
 
 void btn_callback(uint gpio, uint32_t events) {
     if (events == 0x4) { // fall edge
         xSemaphoreGiveFromISR(xSemaphore_r, 0);
     }
 }
+
+void btn_callback_g(uint gpio, uint32_t events) {
+    if (events == 0x4) { // fall edge
+        xSemaphoreGiveFromISR(xSemaphore_g, 0);
+    }
+}
+
 
 void led_1_task(void *p) {
     gpio_init(LED_PIN_R);
